@@ -1,47 +1,64 @@
 <html>
 <?php 
 require('config.php');
-	if($statusid !=1){
+	if($statusid ==0){
 		echo "<script language='javascript'>alert('Kembali ke home'); window.location.href = 'index.php';</script>";
 	}
+	echo '<div class="btn-group mr-2" role="group" > <a class="btn btn-secondary" href="jurnal.php">Jurnal</a> </div>';
+	echo '<div class="btn-group mr-2" role="group" > <a class="btn btn-secondary" href="akun.php">Akun</a> </div>';
+	echo '<div class="btn-group mr-2" role="group" > <a class="btn btn-secondary" href="Bank.php">Bank</a> </div>';
+	echo '<div class="btn-group mr-2" role="group" > <a class="btn btn-secondary" href="warkat.php">Warkat</a> </div>';
+	echo '<div class="btn-group mr-2" role="group" > | </div>';
 	echo '<div class="btn-group mr-2" >
 			<form method="GET" class="form-group mx-sm-3 mb-2 form-inline" action="index.php">  
 				<input class="form-control" name="keyword" placeholder="SEARCH BY ID" type="number"> 
 				<input class="btn btn-primary" type="submit" value="Search">
 			</form>
 		</div>';
-
-
 	
+
+
+	$jatuhtempo = intval(date('Ymd', time()));
 	$con = new mysqli($host, $dbid, $dbpass, $dbname);
 	if (isset($_GET['keyword']) && $_GET['keyword']!='') { 
 		$keyword =  str_replace("'","",$_GET['keyword'])  ;
 		$keyword = $con -> real_escape_string($keyword);
-		$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo FROM transaksi WHERE idtransaksi LIKE '%$keyword%' ORDER BY idtransaksi DESC" ); $stmt->execute();
+		$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, status FROM transaksi WHERE idtransaksi LIKE '%$keyword%' ORDER BY jatuhtempo DESC" ); $stmt->execute();
 	}else{
-		$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo FROM transaksi ORDER BY idtransaksi DESC" ); $stmt->execute();
+		$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, status , jatuhtempo - $jatuhtempo AS DIFFERENCE FROM transaksi ORDER BY DIFFERENCE ASC" ); $stmt->execute();
 	}	
 	
 	$result = $stmt->get_result();
 	$con->close();
+	
+	?>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID Transaksi</th>
+      <th scope="col">Jatuh Tempo</th>
+	  <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+	<?php
 	while($row = mysqli_fetch_assoc($result)) {
+		$tombolselesai = '';
+		if($row["status"]==1){
+			$tombolselesai = '<a href="transaksiselesai.php?idtransaksi='.$row["idtransaksi"].'" class="btn btn-success" onclick="return confirm(\'Anda yakin transaksi ini dselesaikan?\')">Selesai</a>';
+		}
 		echo '
-		<a href="transaksidetail.php?idtransaksi='.$row["idtransaksi"].'">
-			<li class="list-group-item d-flex justify-content-between align-items-center">
-				<div class="input-group">
-					<div class="col-5">
-						<input type="text" name="idtransaksi" class="form-control" value="'.$row["idtransaksi"].'" readonly>
-					</div>
-					<div class="col-2">
-						<input type="text" name="idtransaksi" class="form-control" value="'.$row["jatuhtempo"].'" readonly>
-					</div>
-				</div>
-			</li>
-		</a>
+		<tr>
+		<td>'.$row["idtransaksi"].'</td>
+		<td>'.$row["jatuhtempo"].'</td>
+		<td><a href="transaksidetail.php?idtransaksi='.$row["idtransaksi"].'" class="btn btn-primary">Detail</a>'.$tombolselesai.'</td>
+		</tr>
 		';
 	}
 
 ?>
-
+  </tbody>
+</table>
 
 </html>

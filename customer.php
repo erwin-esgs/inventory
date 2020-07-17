@@ -15,7 +15,6 @@ include 'navbar.php';
 		echo "<script language='javascript'>alert('Kembali ke home'); window.location.href = 'index.php';</script>";
     }
     echo '<div class="btn-group mr-2" role="group" > <a class="btn btn-primary" href="index.php">Back</a> </div>'; 
-	echo '<div class="btn-group mr-2" role="group" > <a class="btn btn-secondary" href="produk.php">Barang</a> </div>';
     echo '<div class="btn-group mr-2" role="group" > | </div>';
     echo '<div class="btn-group mr-2" >
 			<form method="GET" class="form-group mx-sm-3 mb-2 form-inline" action="index.php">  

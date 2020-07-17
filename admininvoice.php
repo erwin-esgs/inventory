@@ -14,6 +14,7 @@ require('config.php');
 			</form>
 		</div>';
 	echo '<div class="btn-group mr-2" role="group" > <a class="btn btn-secondary" href="transaksibaru.php">Tambah Transaksi</a> </div>';
+	
 
 
 	
@@ -28,24 +29,32 @@ require('config.php');
 	
 	$result = $stmt->get_result();
 	$con->close();
+	
+	?>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID Transaksi</th>
+      <th scope="col">Jatuh Tempo</th>
+	  <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+	<?php
 	while($row = mysqli_fetch_assoc($result)) {
 		echo '
+		<tr>
 		<a href="transaksidetail.php?idtransaksi='.$row["idtransaksi"].'">
-			<li class="list-group-item d-flex justify-content-between align-items-center">
-				<div class="input-group">
-					<div class="col-5">
-						<input type="text" name="idtransaksi" class="form-control" value="'.$row["idtransaksi"].'" readonly>
-					</div>
-					<div class="col-2">
-						<input type="text" name="idtransaksi" class="form-control" value="'.$row["jatuhtempo"].'" readonly>
-					</div>
-				</div>
-			</li>
-		</a>
+		<td>'.$row["idtransaksi"].'</td>
+		<td>'.$row["jatuhtempo"].'</td>
+		<td><a href="transaksidetail.php?idtransaksi='.$row["idtransaksi"].'" class="btn btn-primary">Detail</a></td>
+		</tr>
 		';
 	}
 
 ?>
-
+  </tbody>
+</table>
 
 </html>

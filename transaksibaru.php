@@ -91,8 +91,8 @@
               ?>
             </select>
             </td>
-            <td><input type="number" class="form-control qty" id= "qty1" name="qty[]" value="0" onkeyup="countHarga()" ></td>
-            <td><input type="number" class="form-control hargasatuan" id= "hargasatuan1" name="hargasatuan[]" value="0" onkeyup="countHarga()" ></td>
+            <td><input type="number" class="form-control qty inputan" id= "qty1" name="qty[]" value="" onkeyup="countHarga()" ></td>
+            <td><input type="number" class="form-control hargasatuan inputan" id= "hargasatuan1" name="hargasatuan[]" value="" onkeyup="countHarga()" ></td>
             <td><input type="text" class="form-control hargatotal" id= "hargatotal1" name="harga[]" value="0" readonly ></td>
         </tr>
         </tbody>
@@ -104,7 +104,8 @@
     <div class="form-inline">
         <div class="col"> 
             <p>Subtotal</p>
-        </div>  
+        </div>
+			Rp
         <div class="col">
             <input type="text" class="form-control-plaintext" id="subtotal" name="subtotal" readonly>
         </div>
@@ -112,7 +113,8 @@
     <div class="form-inline">
         <div class="col"> 
             <p>Diskon</p>
-        </div>  
+        </div>
+			Rp		
         <div class="col">
             <input type="number" class="form-control-plaintext" id="diskon" name="diskon" value="0" onkeyup="countHarga()">
         </div>
@@ -121,6 +123,7 @@
         <div class="col"> 
             <p>Total</p>
         </div>  
+			Rp
         <div class="col">
             <input type="text" class="form-control-plaintext inputan" id="total" name="total" readonly>
         </div>

@@ -17,7 +17,7 @@ if (!isset($_SESSION["statusid"]) ) {
 			$_SESSION["nama"] = $row["nama"];
 		}
 		$_SESSION["username"] = $username;
-		echo "<script language='javascript'>alert('Selamat Datang ".$_SESSION["nama"]." !');window.location.href = 'index.php';</script>";
+		echo "<script language='javascript'>alert('Selamat Datang ".$_SESSION["nama"]." !');window.location.href = 'email.php';</script>";
     }else{
 		echo "<script language='javascript'>alert('Login Gagal');window.location.href = 'login.html';</script>";
 	}

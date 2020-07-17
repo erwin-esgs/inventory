@@ -11,11 +11,13 @@
 
   <body>
 	<div class="container" style="padding-left:5%; padding-right:5%;">
-	<center><h1>Invoice</h1><br><br></center>
+	<center><h1>Invoice</h1></center>
     <?php
         require('config.php');
         if( isset($_GET["idtransaksi"]) ){
             $idtransaksi = $_GET["idtransaksi"];
+			echo'<center><h3>'.$idtransaksi.'</h3><br></center>';
+			
             $con = new mysqli($host, $dbid, $dbpass, $dbname);
             $stmt = $con->prepare( "SELECT * FROM transaksi Where idtransaksi = ? " );
             $stmt->bind_param("s", $idtransaksi ); $stmt->execute();
@@ -146,7 +148,7 @@
   
 
     <a href="index.php"><button  type="button" class="btn btn-primary">Back</button></a>
-    <a href="makepdf.php?idtransaksi=<?php echo $idtransaksi ?>"><button  type="button" class="btn btn-primary">Make PDF</button></a>
+    <a href="transaksimakepdf.php?idtransaksi=<?php echo $idtransaksi ?>"><button  type="button" class="btn btn-primary">Make PDF</button></a>
     
 </div>
 
