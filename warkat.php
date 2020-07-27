@@ -15,7 +15,7 @@ include 'navbar.php';
 echo '<div class="btn-group mr-2" role="group" ><a href="index.php"><button type="button" class="btn btn-primary" >Back</button></a></div>';
 echo '<div class="btn-group mr-2" role="group" >
 		<form method="GET" action="warkat.php">  
-			<input class="textinput1" name="keyword" placeholder="SEARCH BY ID" type="text"> 
+			<input class="textinput1" name="keyword" placeholder="SEARCH BY No Warkat" type="text"> 
 			<input class="button1" type="submit" value="Search">
 		</form>
 	 </div>';
@@ -25,7 +25,7 @@ $con = new mysqli($host, $dbid, $dbpass, $dbname);
 if (isset($_GET['keyword']) && $_GET['keyword']!='') { // serch 
 	//$keyword = "'%{$_GET['keyword']}%'";
 	$keyword =  $_GET['keyword'] ;
-	$stmt = $con->prepare( "SELECT *  FROM warkat WHERE kodewarkat LIKE '%$keyword%' ORDER BY kodewarkat DESC" ); $stmt->execute();
+	$stmt = $con->prepare( "SELECT *  FROM warkat WHERE nowarkat LIKE '%$keyword%' ORDER BY kodewarkat DESC" ); $stmt->execute();
 	//$stmt->bind_param("s", $keyword ); 
 }else{
 	$stmt = $con->prepare( "SELECT * FROM warkat ORDER BY kodewarkat DESC" ); $stmt->execute();

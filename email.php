@@ -8,14 +8,19 @@ require('config.php');
 require 'fpdf/fpdf.php';
 
 date_default_timezone_set("Asia/Bangkok");
-$datenow = date('Ymd');
+$datenow = date('Y-m-d');
 
 $con = new mysqli($host, $dbid, $dbpass, $dbname);
 $stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, idcustomer FROM transaksi");
 $stmt->execute();
 $result = $stmt->get_result();
 while($row = mysqli_fetch_assoc($result)) {
-	if($datenow == $row["jatuhtempo"]){
+	$datenow = strtotime($datenow);
+	$daterow = strtotime(substr_replace(substr_replace($row["jatuhtempo"],"-",4,0),"-",7,0));
+	$secs = $daterow - $datenow;
+	$days = $secs / 86400;
+	echo $days;die;
+	if($days <= 5 && $days > 0){
 		$idtransaksi = $row["idtransaksi"];
 		$stmt = $con->prepare( "SELECT email FROM customer WHERE idcustomer = ?");
 		$stmt->bind_param("s", $row["idcustomer"] );

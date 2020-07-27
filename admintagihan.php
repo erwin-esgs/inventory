@@ -11,7 +11,7 @@ require('config.php');
 	echo '<div class="btn-group mr-2" role="group" > | </div>';
 	echo '<div class="btn-group mr-2" >
 			<form method="GET" class="form-group mx-sm-3 mb-2 form-inline" action="index.php">  
-				<input class="form-control" name="keyword" placeholder="SEARCH BY ID" type="number"> 
+				<input class="form-control" name="keyword" placeholder="SEARCH BY ID/Ket" type="text"> 
 				<input class="btn btn-primary" type="submit" value="Search">
 			</form>
 		</div>';
@@ -23,7 +23,11 @@ require('config.php');
 	if (isset($_GET['keyword']) && $_GET['keyword']!='') { 
 		$keyword =  str_replace("'","",$_GET['keyword'])  ;
 		$keyword = $con -> real_escape_string($keyword);
-		$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, status FROM transaksi WHERE idtransaksi LIKE '%$keyword%' ORDER BY jatuhtempo DESC" ); $stmt->execute();
+		if( is_numeric($keyword) == true){
+			$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, status FROM transaksi WHERE idtransaksi LIKE '%$keyword%' ORDER BY jatuhtempo DESC" ); $stmt->execute();
+		}else{
+			$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, status FROM transaksi WHERE produk LIKE '%$keyword%' ORDER BY jatuhtempo DESC" ); $stmt->execute();
+		}
 	}else{
 		$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, status , jatuhtempo - $jatuhtempo AS DIFFERENCE FROM transaksi ORDER BY DIFFERENCE ASC" ); $stmt->execute();
 	}	

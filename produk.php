@@ -17,7 +17,7 @@ include 'navbar.php';
     echo '<div class="btn-group mr-2" role="group" > <a class="btn btn-primary" href="index.php">Back</a> </div>'; 
     echo '<div class="btn-group mr-2" role="group" > | </div>';
     echo '<div class="btn-group mr-2" >
-			<form method="GET" class="form-group mx-sm-3 mb-2 form-inline" action="index.php">  
+			<form method="GET" class="form-group mx-sm-3 mb-2 form-inline" action="produk.php">  
 				<input class="form-control" name="keyword" placeholder="SEARCH BY ID" type="number"> 
 				<input class="btn btn-primary" type="submit" value="Search">
 			</form>
