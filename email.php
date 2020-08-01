@@ -67,9 +67,11 @@ $pdf -> SetFont('Arial','B',14);
 $pdf -> AddPage();
 $pdf->Rect(5, 5, 200, 287, 'D');
 //Cell(width , height , text , border , endline , [align])
-$pdf -> Cell(130, 5, 'PT Bintang Makmur', 0 , 1);
+$pdf -> Cell(130, 5, 'PT BIJE JAYA PERDANA', 0 , 1);
 $pdf -> SetFont('Arial','B',11);
-$pdf -> Cell(130, 5, 'JL. Padjajaran No.200 Ujungberung Bandung', 0 , 1);
+$pdf -> Cell(130, 5, 'Komplek Duta Merlin F-4', 0 , 1);
+$pdf -> Cell(130, 5, 'Jalan Gajahmada no.3 RT 2, RW 05. Petojo Utara, Gambir', 0 , 1);
+$pdf -> Cell(130, 5, 'Jakarta Pusat. 10130 ', 0 , 1);
 $pdf -> Cell(190, 7.5, '', 0 , 1, 'C');
 $pdf -> SetFont('Arial','B',14);
 $pdf -> Cell(190, 10, 'INVOICE', 0 , 1, 'C');
