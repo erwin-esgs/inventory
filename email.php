@@ -14,13 +14,19 @@ $con = new mysqli($host, $dbid, $dbpass, $dbname);
 $stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, idcustomer FROM transaksi");
 $stmt->execute();
 $result = $stmt->get_result();
+$datenow = strtotime($datenow);
 while($row = mysqli_fetch_assoc($result)) {
-	$datenow = strtotime($datenow);
+	
 	$daterow = strtotime(substr_replace(substr_replace($row["jatuhtempo"],"-",4,0),"-",7,0));
 	$secs = $daterow - $datenow;
+	echo $datenow." datenow <br>";
+	echo $daterow." dateRow <br>";
+	echo $secs." sec <br>";
 	$days = $secs / 86400;
-	echo $days;die;
+	echo $days." days<br><br>";
+		
 	if($days <= 5 && $days > 0){
+		
 		$idtransaksi = $row["idtransaksi"];
 		$stmt = $con->prepare( "SELECT email FROM customer WHERE idcustomer = ?");
 		$stmt->bind_param("s", $row["idcustomer"] );
@@ -123,6 +129,7 @@ $pdf -> Output($file_pointer,'F');
 	}
 
 }
+
 $con->close();
 echo "<script language='javascript'>window.location.href = 'index.php';</script>";
 ?>

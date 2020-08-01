@@ -19,6 +19,7 @@ require('config.php');
 
 
 	$jatuhtempo = intval(date('Ymd', time()));
+	//echo $jatuhtempo; die;
 	$con = new mysqli($host, $dbid, $dbpass, $dbname);
 	if (isset($_GET['keyword']) && $_GET['keyword']!='') { 
 		$keyword =  str_replace("'","",$_GET['keyword'])  ;
@@ -29,7 +30,7 @@ require('config.php');
 			$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, status FROM transaksi WHERE produk LIKE '%$keyword%' ORDER BY jatuhtempo DESC" ); $stmt->execute();
 		}
 	}else{
-		$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, status , jatuhtempo - $jatuhtempo AS DIFFERENCE FROM transaksi ORDER BY DIFFERENCE ASC" ); $stmt->execute();
+		$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, status , $jatuhtempo - jatuhtempo  AS DIFFERENCE FROM transaksi ORDER BY DIFFERENCE ASC" ); $stmt->execute();
 	}	
 	
 	$result = $stmt->get_result();

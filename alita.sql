@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2020 at 10:37 AM
+-- Generation Time: Aug 01, 2020 at 03:25 AM
 -- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -94,7 +94,7 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`idcustomer`, `nama`, `email`, `alamat`, `telepon`, `npwp`) VALUES
 ('200708132125', 'PT maju mundur', 'atest7139@gmail.com', 'jalan', '123', '123123'),
-('200716202620', 'BUDI', 'erwin_esgs@yahoo.com', 'jalan', '123123', '12345');
+('200716202620', 'BUDI', 'atest7139@gmail.com', 'jalan', '123123', '12345');
 
 -- --------------------------------------------------------
 
@@ -164,9 +164,9 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`idtransaksi`, `idcustomer`, `jatuhtempo`, `nopo`, `pembayaran`, `produk`, `subtotal`, `diskon`, `status`) VALUES
-('20200716215715', '200708132125', '20200715', '12A', 'Cash', '[[\"200412133557\"],[\"tas\"],[\"1\"],[\"1\"],[\"1\"]]', 1, 0, 1),
+('20200716215715', '200708132125', '20200728', '12A', 'Cash', '[[\"200412133557\"],[\"tas\"],[\"1\"],[\"1\"],[\"1\"]]', 1, 0, 1),
 ('20200716224735', '200708132125', '20200716', '12', 'Cash', '[[\"200412133557\"],[\"tas\"],[\"10\"],[\"1000\"],[\"10000\"]]', 10000, 0, 1),
-('20200716224851', '200708132125', '20200728', '21', 'Cash', '[[\"200412133557\"],[\"tas\"],[\"10\"],[\"1000\"],[\"10000\"]]', 10000, 0, 1),
+('20200716224851', '200708132125', '20200802', '21', 'Cash', '[[\"200412133557\"],[\"tas\"],[\"10\"],[\"1000\"],[\"10000\"]]', 10000, 0, 1),
 ('20200716224906', '200708132125', '20200805', '200', 'Cash', '[[\"200412133557\"],[\"tas\"],[\"10\"],[\"200\"],[\"2000\"]]', 2000, 0, 1),
 ('20200716224945', '200708132125', '20200728', '10w', 'Cash', '[[\"200412133557\"],[\"tas\"],[\"10\"],[\"1000\"],[\"10000\"]]', 10000, 0, 1);
 
@@ -271,6 +271,12 @@ INSERT INTO `warkat` (`kodewarkat`, `nowarkat`, `kodebank`, `aktif`) VALUES
 --
 ALTER TABLE `buktibayar`
   ADD PRIMARY KEY (`idtransaksi`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`idcustomer`);
 
 --
 -- Indexes for table `jurnal`
