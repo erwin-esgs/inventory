@@ -11,7 +11,7 @@ date_default_timezone_set("Asia/Bangkok");
 $datenow = date('Y-m-d');
 
 $con = new mysqli($host, $dbid, $dbpass, $dbname);
-$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, idcustomer FROM transaksi");
+$stmt = $con->prepare( "SELECT idtransaksi, jatuhtempo, idcustomer, jatuhtempo , nopo , pembayaran , produk , subtotal , diskon FROM transaksi");
 $stmt->execute();
 $result = $stmt->get_result();
 $datenow = strtotime($datenow);
@@ -36,10 +36,10 @@ while($row = mysqli_fetch_assoc($result)) {
 			$email = $row1["email"];
 		}
 	//======================	
-        $stmt = $con->prepare( "SELECT * FROM transaksi Where idtransaksi = ? " );
-        $stmt->bind_param("s", $idtransaksi ); $stmt->execute();
-        $result = $stmt->get_result();
-        while($row = mysqli_fetch_assoc($result)) {
+        // $stmt = $con->prepare( "SELECT * FROM transaksi Where idtransaksi = ? " );
+        // $stmt->bind_param("s", $idtransaksi ); $stmt->execute();
+        // $result = $stmt->get_result();
+        // while($row = mysqli_fetch_assoc($result)) {
             $idcustomer = strval($row["idcustomer"]);
             $jatuhtempo = $row["jatuhtempo"];
             $nopo = $row["nopo"];
@@ -47,9 +47,9 @@ while($row = mysqli_fetch_assoc($result)) {
             $produk = json_decode( $row["produk"] );
             $subtotal = $row["subtotal"];
             $diskon = $row["diskon"];
-        }
+        //}
 
-    $stmt = $con->prepare( "SELECT * FROM customer Where idcustomer = ? " );
+    $stmt = $con->prepare( "SELECT nama, email, alamat, telepon, npwp FROM customer Where idcustomer = ? " );
     $stmt->bind_param("s", $idcustomer );$stmt->execute();
     $result = $stmt->get_result();
     while($row = mysqli_fetch_assoc($result)) {
