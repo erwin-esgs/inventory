@@ -23,15 +23,15 @@ while($row = mysqli_fetch_assoc($result)) {
 	// echo $daterow." dateRow <br>";
 	// echo $secs." sec <br>";
 	$days = $secs / 86400;
-	echo $days." days<br><br>";
+	//echo $days." days<br><br>";
 		
 	if($days <= 5 && $days > 0){
 		
 	//======================	
 
-		$idtransaksi = $row["idtransaksi"]; echo $idtransaksi."<br>";
+		$idtransaksi = $row["idtransaksi"]; //echo $idtransaksi."<br>";
 		$idcustomer = strval($row["idcustomer"]);
-		$jatuhtempo = $row["jatuhtempo"];echo $jatuhtempo."<br><br>";
+		$jatuhtempo = $row["jatuhtempo"]; //echo $jatuhtempo."<br><br>";
 		$nopo = $row["nopo"];
 		$pembayaran = $row["pembayaran"];
 		$produk = json_decode( $row["produk"] );
@@ -124,5 +124,5 @@ while($row = mysqli_fetch_assoc($result)) {
 }
 
 $con->close();
-//echo "<script language='javascript'>window.location.href = 'index.php';</script>";
+echo "<script language='javascript'>window.location.href = 'index.php';</script>";
 ?>
