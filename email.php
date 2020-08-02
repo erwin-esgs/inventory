@@ -19,11 +19,11 @@ while($row = mysqli_fetch_assoc($result)) {
 	
 	$daterow = strtotime(substr_replace(substr_replace($row["jatuhtempo"],"-",4,0),"-",7,0));
 	$secs = $daterow - $datenow;
-	echo $datenow." datenow <br>";
-	echo $daterow." dateRow <br>";
-	echo $secs." sec <br>";
+	// echo $datenow." datenow <br>";
+	// echo $daterow." dateRow <br>";
+	// echo $secs." sec <br>";
 	$days = $secs / 86400;
-	echo $days." days<br><br>";
+	//echo $days." days<br><br>";
 		
 	if($days <= 5 && $days > 0){
 		
@@ -105,7 +105,7 @@ $pdf -> Cell(130, 5, '', 0 , 0); $pdf -> Cell(30, 5, 'Diskon', 0 , 0);   $pdf ->
 $pdf -> Cell(130, 5, '', 0 , 0); $pdf -> Cell(30, 5, 'Total', 0 , 0);    $pdf -> Cell(30, 5, $subtotal-$diskon, 1 , 1);
 
 $pdf -> Cell(30, 15, '', 0 , 1);
-$pdf -> Cell(130, 5, '', 0 , 0); $pdf -> Cell(30, 5, 'PT Bintang Makmur', 0 , 1);
+$pdf -> Cell(130, 5, '', 0 , 0); $pdf -> Cell(30, 5, 'PT BIJE JAYA PERDANA', 0 , 1);
 $pdf -> Cell(30, 25, '', 0 , 1);
 $pdf -> Cell(130, 5, '', 0 , 0); $pdf -> Cell(30, 5, '(Manager Keuangan)', 0 , 1);
 
