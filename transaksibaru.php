@@ -27,6 +27,10 @@
             <select class="form-control inputan" id="idcustomer" name="idcustomer">
               <option selected="" disabled="" value="">--Select Id Customer--</option>
                 <?php
+				if(!isset($_SESSION["username"]) || $_SESSION["username"] == ""){
+					//header("location:login.html");
+					echo "<script language='javascript'>alert('Silahkan login terlebih dulu'); window.location.href = 'login.html';</script>";
+				}
 				$statusid = $_SESSION["statusid"];
 				if($statusid !=0){
 					echo "<script language='javascript'> window.location.href = 'logout.php';</script>";

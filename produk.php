@@ -5,6 +5,10 @@
 
 <div class="container">
 <?php
+if(!isset($_SESSION["username"]) || $_SESSION["username"] == ""){
+		//header("location:login.html");
+		echo "<script language='javascript'>alert('Silahkan login terlebih dulu'); window.location.href = 'login.html';</script>";
+	}
 $username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
 $statusid = $_SESSION["statusid"];
