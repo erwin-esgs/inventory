@@ -17,26 +17,19 @@ $result = $stmt->get_result();
 $datenow = strtotime($datenow);
 while($row = mysqli_fetch_assoc($result)) {
 	
-	$idtransaksi = $row["idtransaksi"];
 	$daterow = strtotime(substr_replace(substr_replace($row["jatuhtempo"],"-",4,0),"-",7,0));
 	$secs = $daterow - $datenow;
 	// echo $datenow." datenow <br>";
 	// echo $daterow." dateRow <br>";
 	// echo $secs." sec <br>";
 	$days = $secs / 86400;
-	//echo $days." days<br><br>";die;
-	
-	if($days <= -7 && $days < 0){
-		$stmt1 = $con->prepare( "UPDATE transaksi SET status = 2 Where idtransaksi = ? ");
-		$stmt1->bind_param("s", $idtransaksi );
-		$stmt1->execute();
-	}
+	//echo $days." days<br><br>";
 		
 	if($days <= 5 && $days > 0){
 		
 	//======================	
 
-		 //echo $idtransaksi."<br>";
+		$idtransaksi = $row["idtransaksi"]; //echo $idtransaksi."<br>";
 		$idcustomer = strval($row["idcustomer"]);
 		$jatuhtempo = $row["jatuhtempo"]; //echo $jatuhtempo."<br><br>";
 		$nopo = $row["nopo"];

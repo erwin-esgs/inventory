@@ -12,7 +12,7 @@ require('config.php');
 include 'navbar.php';
 
 	if($statusid !=0){
-		echo "<script language='javascript'>alert('Kembali ke home'); window.location.href = 'index.php';</script>";
+		echo "<script language='javascript'>alert('Kembali ke home'); window.location.href = 'logout.php';</script>";
     }
     echo '<div class="btn-group mr-2" role="group" > <a class="btn btn-primary" href="index.php">Back</a> </div>'; 
     echo '<div class="btn-group mr-2" role="group" > | </div>';

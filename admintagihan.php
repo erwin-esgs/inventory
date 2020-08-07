@@ -50,7 +50,7 @@ require('config.php');
 	<?php
 	while($row = mysqli_fetch_assoc($result)) {
 		$tombolselesai = '';
-		if($row["status"]==1){
+		if($row["status"]==1 || $row["status"]==2){
 			$tombolselesai = '<a href="transaksiselesai.php?idtransaksi='.$row["idtransaksi"].'" class="btn btn-success" onclick="return confirm(\'Anda yakin transaksi ini dselesaikan?\')">Selesai</a>';
 		}
 		echo '

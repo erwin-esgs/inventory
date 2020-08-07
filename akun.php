@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php ini_set('session.gc_maxlifetime', 300); session_set_cookie_params(300); session_start(); ?>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -8,7 +8,7 @@ $username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
 $statusid = $_SESSION["statusid"];
 if($statusid ==0){
-	echo "<script language='javascript'>alert('Kembali ke home'); window.location.href = 'index.php';</script>";
+	echo "<script language='javascript'> window.location.href = 'logout.php';</script>";
 }
 include 'config.php';
 include 'navbar.php';

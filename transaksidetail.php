@@ -33,6 +33,7 @@
                 $produk = json_decode( $row["produk"] );
                 $subtotal = $row["subtotal"];
                 $diskon = $row["diskon"];
+				$status = ""; if($row["status"] == 2){$status = "(Tidak Mampu Bayar)";}
             }
         }else{
             echo "<script language='javascript'>alert('ID tidak ditemukan');window.location.href = 'index.php';</script>";
@@ -63,9 +64,10 @@
             <input type="number" name="jatuhtempo" id="jatuhtempo" class="form-control-plaintext" readonly value="<?php echo $idcustomer ?>"  >
           </div>
           <div class="col">
-            <label for="exampleInputText">Jatuh Tempo</label>
+            <label for="exampleInputText">Jatuh Tempo  </label>
             <input type="number" name="jatuhtempo" id="jatuhtempo" class="form-control-plaintext" readonly value="<?php echo $jatuhtempo ?>"  >
-          </div>  
+			<?= $status;?>
+		  </div>  
         </div>
         <div class="col">
           <div class="col">
