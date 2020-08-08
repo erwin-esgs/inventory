@@ -1,3 +1,9 @@
+<?php ini_set('session.gc_maxlifetime', 300); session_set_cookie_params(300); session_start(); 
+if(!isset($_SESSION["username"]) || $_SESSION["username"] == ""){
+		//header("location:login.html");
+		echo "<script language='javascript'>alert('Silahkan login terlebih dulu'); window.location.href = 'login.html';</script>";
+	}
+?>
 <!doctype html>
 <html lang="en">
 <?php require('config.php');?>
@@ -57,7 +63,7 @@
               ?>
             </select>
             </td>
-            <td><input type="number" class="form-control nominal" id= "nominal1" name="nominal[]" value="" onkeyup="countHarga()" ></td>
+            <td><input type="number" class="form-control nominal" min="1" id= "nominal1" name="nominal[]" value="" onkeyup="countHarga()" ></td>
             <td><input type="text" class="form-control keterangan" id= "keterangan" name="keterangan[]" ></td>
         </tr>
         </tbody>
@@ -92,12 +98,20 @@
 <script>
 function validasi() { 
 var textinput1 = document.getElementsByClassName("inputan");
+var numberinput1 = document.getElementsByClassName("nominal");
 var count=0;
-	for (i = 0; i < textinput1.length; i++) { 
+for (i = 0; i < textinput1.length; i++) { 
 	if(textinput1[i].value == "" || textinput1[i].value == null){
 		count = count + 1;
 	}
+	
 }
+for (i = 0; i < numberinput1.length; i++) { 
+	if(parseInt(numberinput1[i].value) < 1  ){
+		count = count + 1;
+	}
+}
+
 if(count > 0){
 	alert("Fill all required field!"); 
 	return false;

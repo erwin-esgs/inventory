@@ -49,7 +49,7 @@
           </div>
           <div class="col">
             <label for="exampleInputText">Jatuh Tempo</label>
-            <input type="number" name="jatuhtempo" id="jatuhtempo" class="form-control inputan"  >
+            <input type="number" min="1" name="jatuhtempo" id="jatuhtempo" class="form-control inputan"  >
           </div>  
         </div>
         <div class="col">
@@ -100,8 +100,8 @@
               ?>
             </select>
             </td>
-            <td><input type="number" class="form-control qty inputan" id= "qty1" name="qty[]" value="" onkeyup="countHarga()" ></td>
-            <td><input type="number" class="form-control hargasatuan inputan" id= "hargasatuan1" name="hargasatuan[]" value="" onkeyup="countHarga()" ></td>
+            <td><input type="number" class="form-control qty inputan nominal" min="1" id= "qty1" name="qty[]" value="" onkeyup="countHarga()" ></td>
+            <td><input type="number" class="form-control hargasatuan inputan nominal" min="1" id= "hargasatuan1" name="hargasatuan[]" value="" onkeyup="countHarga()" ></td>
             <td><input type="text" class="form-control hargatotal" id= "hargatotal1" name="harga[]" value="0" readonly ></td>
         </tr>
         </tbody>
@@ -155,9 +155,15 @@
 <script>
 function validasi() { 
 var textinput1 = document.getElementsByClassName("inputan");
+var numberinput1 = document.getElementsByClassName("nominal");
 var count=0;
 	for (i = 0; i < textinput1.length; i++) { 
 	if(textinput1[i].value == "" || textinput1[i].value == null){
+		count = count + 1;
+	}
+}
+for (i = 0; i < numberinput1.length; i++) { 
+	if(parseInt(numberinput1[i].value) < 1  ){
 		count = count + 1;
 	}
 }
